@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <title>Tweakerdash — Eat Like shit</title>
+  <style>
+    :root {
+      --ink: #111;
+      --cream: #f5edda;
+      --yellow: #ffe600;
+      --pink: #ff4fa3;
+      --green: #6cff67;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(17,17,17,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17,17,17,.06) 1px, transparent 1px),
+        var(--cream);
+      background-size: 24px 24px;
+      font-family: Impact, "Arial Black", sans-serif;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px clamp(16px, 4vw, 48px);
+      background: var(--ink);
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .topbar strong { color: var(--yellow); }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: clamp(24px, 7vw, 80px) 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(74px, 17vw, 180px);
+      line-height: .72;
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+      text-shadow: 8px 8px 0 var(--yellow);
+    }
+
+    h1 span {
+      display: block;
+      color: var(--pink);
+      font-size: .52em;
+      letter-spacing: -.04em;
+      -webkit-text-stroke: 2px var(--ink);
+      text-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .tagline {
+      max-width: 700px;
+      margin: 40px auto 24px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(20px, 4vw, 34px);
+      font-weight: 900;
+      transform: rotate(1deg);
+    }
+
+    .card {
+      width: min(620px, 100%);
+      margin: 36px auto 0;
+      padding: 28px 20px;
+      border: 5px solid var(--ink);
+      background: var(--yellow);
+      box-shadow: 12px 12px 0 var(--ink);
+      transform: rotate(-1deg);
+    }
+
+    #order {
+      min-height: 64px;
+      display: grid;
+      place-items: center;
+      margin: 0 0 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(22px, 5vw, 38px);
+      font-weight: 900;
+    }
+
+    button {
+      border: 4px solid var(--ink);
+      border-radius: 0;
+      padding: 16px 24px;
+      background: var(--pink);
+      color: var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
+      font: 900 20px Impact, "Arial Black", sans-serif;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    button:active {
+      translate: 6px 6px;
+      box-shadow: none;
+    }
+
+    button:focus-visible {
+      outline: 5px solid white;
+      outline-offset: 4px;
+    }
+
+    footer {
+      padding: 40px 20px 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    @media (max-width: 500px) {
+      h1 { text-shadow: 5px 5px 0 var(--yellow); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <strong>Tweakerdash</strong>
+    <span>Fucking hungry</span>
+  </header>
+
+  <main>
+    <h1>Tweakerdash <span>Eat like shit</span></h1>
+    <p class="tagline">When normal hunger is too much pussy shit.</p>
+
+    <section class="card" aria-live="polite">
+      <p id="order">Press the button. Accept the consequences.</p>
+      <button id="dash" type="button">Shit-post the order</button>
+    </section>
+  </main>
+
+  <footer>Comedy about absurd cravings, not about people struggling with substance use.</footer>
+
+  <script>
+    const orders = [
+      "Four tacos, a birthday cake, and a goddamn gallon of ranch.",
+      "Two whole pizzas and the largest amount of ice cream legally imaginable.",
+      "Nuggets, mozzarella sticks, fries, and a slice of pie—because the heart wants chaos.",
+      "A cheeseburger eaten inside the parking lot of another cheeseburger.",
+      "Seven breakfast burritos delivered at 3:00 AM, you fucking animal.",
+      "Hot wings, cold soda, and absolutely no fucking vegetables.",
+      "One sushi roll and an entire rack of ribs. Settle this shit.",
+      "Garlic bread, onion rings, cookies, and a bad decision.",
+      "A family meal for one pissed-off human.",
+      "Every dipping sauce. The app begged you to stop."
+    ];
+
+    let lastIndex = -1;
+    const order = document.querySelector("#order");
+    const button = document.querySelector("#dash");
+
+    button.addEventListener("click", () => {
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * orders.length);
+      } while (nextIndex === lastIndex);
+
+      lastIndex = nextIndex;
+      order.textContent = orders[nextIndex];
+    });
+  </script>
+</body>
+</html>
